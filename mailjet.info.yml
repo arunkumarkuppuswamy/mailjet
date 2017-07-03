@@ -1,0 +1,7 @@
+name: Mailjet
+description: 'Send your emails by your Mailjet API.'
+core: 8.x
+package: MailJet
+dependencies:
+  - views_bulk_operations
+type: module

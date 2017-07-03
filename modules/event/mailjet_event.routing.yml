@@ -1,0 +1,6 @@
+mailjet_event.callback:
+  path: /mailjetevent
+  defaults:
+    _controller: '\Drupal\mailjet_event\Controller\DefaultController::mailjet_event_callback'
+  requirements:
+    _access: 'true'

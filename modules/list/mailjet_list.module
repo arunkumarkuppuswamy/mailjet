@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @FIXME
+ * This implementation of hook_menu() cannot be automatically converted because
+ * it contains logic (i.e., branching statements, function calls, object
+ * instantiation, etc.) You will need to convert it manually. Sorry!
+ *
+ * For more information on how to convert hook_menu() to Drupal 8's new routing
+ * and linking systems, see https://api.drupal.org/api/drupal/core%21includes%21menu.inc/group/menu/8
+ */
+
+
+function mailjet_list_menu() {
+  $items = array();
+
+  $items['admin/mailjet/list'] = array(
+    'title' => 'Contacts',
+    'page callback' => 'mailjet_list_iframe',
+    'access arguments' => array('administer mailjet module'),
+    'description' => t('Click here to access the Mailjet contact lists'),
+    'file path' => drupal_get_path('module', 'mailjet_list'),
+    'file' => 'includes/mailjet_list.iframes.inc',
+    'type' => MENU_NORMAL_ITEM,
+    'weight' => 1,
+  );
+
+  return $items;
+}
+
+/**
+ * Adds permissions for the lists.
+ */
+function mailjet_list_access(){}

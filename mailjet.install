@@ -1,0 +1,93 @@
+<?php
+/**
+ * @file
+ * Functions called while installing, uninstalling or activation of the module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function mailjet_install()
+{
+  \Drupal::configFactory()->getEditable('mailjet.settings')->set('mailjet_debug', FALSE)->save();
+  cache_clear_all();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function mailjet_uninstall()
+{
+  \Drupal::config('mailjet.settings')->clear('mailjet_from')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_host')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_on')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_password')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_port')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_protocol')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_test')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_test_address')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_username')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_allowhtml')->save();
+  \Drupal::config('mailjet.settings')->clear('mailjet_debug')->save();
+}
+
+/**
+ * Implements hook_disable().
+ */
+function mailjet_disable()
+{
+  \Drupal::configFactory()->getEditable('mailjet.settings')->set('mailjet_on', FALSE)->save();
+  // @FIXME
+// // @FIXME
+// // This looks like another module's variable. You'll need to rewrite this call
+// // to ensure that it uses the correct configuration object.
+// variable_set('mail_system', array('default-system' => 'DefaultMailSystem'));
+
+}
+
+/**
+ * Implements hook_update().
+ */
+function mailjet_update_7000()
+{
+  if (\Drupal::config('mailjet.settings')->get('mailjet_on')) {
+    // @FIXME
+// // @FIXME
+// // This looks like another module's variable. You'll need to rewrite this call
+// // to ensure that it uses the correct configuration object.
+// variable_set('mail_system', array('default-system' => 'MailjetSmtpMailSystem'));
+
+  }
+  cache_clear_all();
+}
+
+
+/**
+ * Implements hook_requirements().
+ */
+function mailjet_requirements($phase) {
+  $requirements = array();
+  $t = 't';
+  if ($phase == 'install') {
+    $errorData = array(
+      'severity' => REQUIREMENT_ERROR,
+      'description' => $t('Mailjet module requires the <a href="@phpmailer">PHPMailer Library</a>, which is missing. Download and extract the entire contents of the archive into the %path directory on your server.',
+        array(
+          '@phpmailer' => 'http://github.com/PHPMailer/PHPMailer/archive/v5.2.21.zip',
+          '%path' => 'sites/all/libraries/phpmailer'
+        )
+      ),
+    );
+
+    if (function_exists('libraries_get_path')) {
+      $phpmailer_path = libraries_get_path('phpmailer');
+      if (!$phpmailer_path) {
+        $requirements['phpmailer'] = $errorData;
+      }
+    }
+    elseif (!file_exists('sites/all/libraries/phpmailer/PHPMailerAutoload.php')) {
+      $requirements['phpmailer'] = $errorData;
+    }
+  }
+  return $requirements;
+}

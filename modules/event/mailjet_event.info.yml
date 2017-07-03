@@ -1,0 +1,8 @@
+name: 'Mailjet Event API'
+description: 'Add support for MailJet Events.'
+core: 8.x
+package: MailJet
+dependencies:
+  - entity
+  - mailjet
+type: module

@@ -1,0 +1,24 @@
+mailjet.settings:
+  type: mapping
+  label: Settings
+  mapping:
+    mailjet_allowhtml:
+      type: boolean
+    mailjet_username:
+      type: string
+    mailjet_password:
+      type: string
+    mailjet_protocol:
+      type: string
+    mailjet_host:
+      type: string
+    mailjet_port:
+      type: string
+    mailjet_active:
+      type: boolean
+    mailjet_properties_sync:
+      type: boolean
+    mailjet_on:
+      type: boolean
+    mailjet_test_address:
+      type: string

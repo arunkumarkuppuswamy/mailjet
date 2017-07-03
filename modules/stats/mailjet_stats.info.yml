@@ -1,0 +1,10 @@
+name: 'Mailjet Stats'
+description: 'Add support for viewing MailJet Stats.'
+core: 8.x
+php: '5.3'
+package: MailJet
+dependencies:
+  - views_date_format_sql
+  - views
+  - mailjet
+type: module

@@ -1,0 +1,10 @@
+mailjet_allowhtml: true
+mailjet_username: ''
+mailjet_password: ''
+mailjet_protocol: standard
+mailjet_host: in-v3.mailjet.com
+mailjet_port: '587'
+mailjet_active: false
+mailjet_properties_sync: true
+mailjet_on: false
+mailjet_test_address: ''

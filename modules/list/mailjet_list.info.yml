@@ -1,0 +1,9 @@
+name: 'Mailjet Lists'
+description: 'Add support for MailJet Lists.'
+core: 8.x
+php: '5.3'
+package: MailJet
+dependencies:
+  - mailjet
+  - viewfield
+type: module
